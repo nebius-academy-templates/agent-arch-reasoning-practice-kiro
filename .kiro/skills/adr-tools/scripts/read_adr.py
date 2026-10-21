@@ -1,0 +1,50 @@
+"""
+read_adr — adr-tools skill
+
+Reads a single ADR by ID prefix (e.g. "ADR-001") and returns its full content
+as a JSON object with id, filename, and body.
+
+Usage:
+    python .kiro/skills/adr-tools/scripts/read_adr.py ADR-001
+"""
+
+import json
+import sys
+from pathlib import Path
+
+
+def _repo_root() -> Path:
+    p = Path(__file__).resolve()
+    for parent in p.parents:
+        if (parent / "data" / "adrs").is_dir():
+            return parent
+    return p.parents[4]
+
+
+ADR_DIR = _repo_root() / "data" / "adrs"
+
+
+def read_adr(adr_id: str) -> dict:
+    adr_id = adr_id.strip().upper()
+    matches = list(ADR_DIR.glob(f"{adr_id}*.md"))
+    if not matches:
+        raise FileNotFoundError(f"No ADR found matching '{adr_id}' in {ADR_DIR}")
+    path = sorted(matches)[0]
+    return {
+        "id": adr_id,
+        "filename": path.name,
+        "body": path.read_text(),
+    }
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python read_adr.py <ADR-ID>", file=sys.stderr)
+        print("Example: python read_adr.py ADR-001", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        print(json.dumps(read_adr(sys.argv[1]), indent=2))
+    except FileNotFoundError as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)

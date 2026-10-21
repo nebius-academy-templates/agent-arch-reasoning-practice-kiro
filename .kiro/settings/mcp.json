@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "mermaid": {
+      "command": "claude-mermaid",
+      "args": [],
+      "disabled": true,
+      "autoApprove": ["mermaid_preview", "mermaid_save"]
+    }
+  }
+}

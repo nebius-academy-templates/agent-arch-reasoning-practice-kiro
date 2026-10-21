@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+*.log
+
+# Environment
+.env
+.env.*
+
+# Student-generated outputs (created during the exercise)
+output/adrs/*.md
+output/diagrams/*.mmd
+output/diagrams/*.svg
+output/diagrams/*.png
+output/diagrams/*.pdf
+output/rfc*.md
+
+# Agent scratch/temp drafts (cross-platform replacement for /tmp)
+output/tmp/
+
+# Student-created agent files (generated during the exercise from the template)
+# The *.template.md stays tracked; the filled-in architect.md and rfc writer(s) do not.
+.kiro/agents/architect.md
+.kiro/agents/rfc-writer*.md
+.kiro/agents/rfc_writer*.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
