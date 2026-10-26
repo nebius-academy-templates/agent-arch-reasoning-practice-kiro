@@ -217,7 +217,7 @@ The repo ships `.kiro/settings/mcp.json` with the server already declared:
 
 Kiro IDE reloads MCP config on save — no restart needed. Open the MCP panel (`/mcp`) and confirm **mermaid** shows as connected with its **2 tools** (`mermaid_preview`, `mermaid_save`). The `autoApprove` entry means you are not prompted to allow those tool calls during the exercise.
 
-> If the panel shows "connecting" forever or "command not found", the binary is not on your `PATH`. Find it with `which claude-mermaid` and put that absolute path in `command`.
+> If the panel shows "connecting" forever or "command not found", the binary is not on your `PATH`. Find it with `which claude-mermaid` (macOS/Linux) or `where claude-mermaid` (Windows) and put that absolute path in `command`.
 
 ### Verify it works
 
